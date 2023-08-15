@@ -14,7 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.util.Enumeration;
+import java.util.*;
 
 public class UIPanel extends JPanel implements ActionListener, ChangeListener {
 
@@ -44,11 +44,31 @@ public class UIPanel extends JPanel implements ActionListener, ChangeListener {
     private JButton buttonCellColor;
     private JButton buttonGridLinesColor;
 
+    private JComponent panelTab4;
+    private JLabel labelShortcuts;
+
+    private static final Map<String, String> shortcutsMap;
+    static {
+        Map<String, String> temp = new LinkedHashMap<>();
+        temp.put("Left mouse button", "toggle cell");
+        temp.put("Right mouse button", "panning");
+        temp.put("Mouse wheel", "zooming");
+        temp.put("Space", "toggle paused");
+        temp.put("Up arrow", "increment step rate");
+        temp.put("Down arrow", "decrement step rate");
+        temp.put("Right arrow", "step forwards one generation");
+        temp.put("Shift", "start/end blueprint creation");
+        temp.put("b", "apply selected blueprint");
+        temp.put("c", "clear entire board");
+        shortcutsMap = Collections.unmodifiableMap(temp);
+    }
+
     public UIPanel(Game game) {
         this.game = game;
 
         this.tabbedPane = new JTabbedPane();
         tabbedPane.setFocusable(false);
+        tabbedPane.setPreferredSize(getPreferredSize());
 
         // tab 1
         this.panelTab1 = new JPanel();
@@ -145,10 +165,27 @@ public class UIPanel extends JPanel implements ActionListener, ChangeListener {
         panelTab3.add(Box.createRigidArea(new Dimension(0, 30)));
         panelTab3.add(buttonGridLinesColor);
 
+        // tab 4
+        this.panelTab4 = new JPanel();
+        this.labelShortcuts = new JLabel();
+        StringBuilder sb = new StringBuilder();
+        sb.append("<html>");
+        sb.append("Shortcuts:<br><br>");
+        for (Map.Entry<String, String> shortcut : shortcutsMap.entrySet()) {
+            sb.append(shortcut.getKey());
+            sb.append(" -> ");
+            sb.append(shortcut.getValue());
+            sb.append("<br>");
+        }
+        labelShortcuts.setText(sb.toString());
+
+        panelTab4.add(labelShortcuts);
+
         //
         tabbedPane.add("Controls", panelTab1);
         tabbedPane.add("Blueprints", panelTab2);
         tabbedPane.add("Colors", panelTab3);
+        tabbedPane.add("Shortcuts", panelTab4);
         this.add(tabbedPane);
     }
 
