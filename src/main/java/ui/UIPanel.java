@@ -60,6 +60,8 @@ public class UIPanel extends JPanel implements ActionListener, ChangeListener {
         temp.put("Shift", "start/end blueprint creation");
         temp.put("b", "apply selected blueprint");
         temp.put("c", "clear entire board");
+        temp.put("-", "zoom out");
+        temp.put("=", "zoom in");
         shortcutsMap = Collections.unmodifiableMap(temp);
     }
 

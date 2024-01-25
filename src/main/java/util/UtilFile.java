@@ -14,7 +14,14 @@ public class UtilFile {
     }
 
     public static File[] getUserDataFiles() {
-//        Stream.of(USERDATA_OUTPUT_FOLDER.listFiles()).forEach(f -> System.out.println(f.getName()));
+        if (USERDATA_OUTPUT_FOLDER.exists()) {
+            System.out.println(USERDATA_OUTPUT_FOLDER + " already exists");
+        } else if (USERDATA_OUTPUT_FOLDER.mkdirs()) {
+            System.out.println(USERDATA_OUTPUT_FOLDER + " was created");
+        } else {
+            System.out.println(USERDATA_OUTPUT_FOLDER + " was not created");
+        }
+
         return USERDATA_OUTPUT_FOLDER.listFiles();
     }
 

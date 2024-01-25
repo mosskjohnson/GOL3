@@ -209,6 +209,30 @@ public class Game implements KeyListener, MouseListener, MouseMotionListener, Mo
                 int cellY = camera.mouseToWorldY(mousePosition.y);
                 board.applyBlueprint(activeBlueprint, cellX, cellY);
                 break;
+            case KeyEvent.VK_EQUALS:
+                double mouseBeforeX = camera.screenToWorldX(mousePosition.x);
+                double mouseBeforeY = camera.screenToWorldY(mousePosition.y);
+
+                camera.zoom(ZOOM_IN_FACTOR);
+
+                double mouseAfterX = camera.screenToWorldX(mousePosition.x);
+                double mouseAfterY = camera.screenToWorldY(mousePosition.y);
+
+                camera.offsetX += (mouseBeforeX - mouseAfterX);
+                camera.offsetY += (mouseBeforeY - mouseAfterY);
+                break;
+            case KeyEvent.VK_MINUS:
+                double mouseBeforeX1 = camera.screenToWorldX(mousePosition.x);
+                double mouseBeforeY1 = camera.screenToWorldY(mousePosition.y);
+
+                camera.zoom(ZOOM_OUT_FACTOR);
+
+                double mouseAfterX1 = camera.screenToWorldX(mousePosition.x);
+                double mouseAfterY1 = camera.screenToWorldY(mousePosition.y);
+
+                camera.offsetX += (mouseBeforeX1 - mouseAfterX1);
+                camera.offsetY += (mouseBeforeY1 - mouseAfterY1);
+                break;
             default:
                 System.out.println("Key " + e.getKeyCode() + ": '" + e.getKeyChar() + "'" + " does not have command associated with it");
         }
