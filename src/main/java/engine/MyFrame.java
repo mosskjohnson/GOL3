@@ -7,9 +7,8 @@ import java.awt.*;
 
 public class MyFrame {
 
-    public void start() {
-        //Create and set up the window.
-        JFrame frame = new JFrame("MyFrame");
+    public void start(String title) {
+        JFrame frame = new JFrame(title);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         GamePanel gamePanel = new GamePanel();
