@@ -4,16 +4,17 @@ import util.PairInt;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class Board {
 
-    private LinkedHashSet<PairInt> aliveCells;
+    private Set<PairInt> aliveCells;
 
     public Board() {
         aliveCells = new LinkedHashSet<>();
     }
 
-    public LinkedHashSet<PairInt> getAliveCells() {
+    public Set<PairInt> getAliveCells() {
         return aliveCells;
     }
 

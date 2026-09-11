@@ -3,12 +3,13 @@ package game;
 import util.PairInt;
 
 import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class Blueprint {
 
     public final int WIDTH;
     public final int HEIGHT;
-    public final LinkedHashSet<PairInt> ALIVE_CELLS_RELATIVE;
+    public final Set<PairInt> ALIVE_CELLS_RELATIVE;
 
     public Blueprint(int width, int height, LinkedHashSet<PairInt> aliveCellsRelative) {
         if (width <= 0 || height <= 0) {
